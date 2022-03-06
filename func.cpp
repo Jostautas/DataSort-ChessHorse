@@ -47,7 +47,26 @@ void initSet(int CX[], int CY[]){
     CX[6] = 1;  CY[6] = -2;
     CX[7] = 2;  CY[7] = -1;
 }
-// l - number of current step
-void go(int n, vector<vector<int>> &Table, int l){
-
+// iter - iteration, number of current step
+int go(int n, vector<vector<int>> &Table, int iter, int x, int y, int CX[], int CY[], int nn){
+    int newX, newY, out;
+    for(int i = 0; i < 8; i++){
+        newX = x + CX[i];
+        newY = y + CX[i];
+        if((newX >= 1) && (newX <= n) && (newY >= 1) && (newY <= n)){
+            if(Table[newX][newY] == 0){
+                Table[newX][newY] = iter;
+                if(iter < nn){
+                    out = go(n, Table, iter+1, newX, newY, CX, CY, nn);
+                    if(out != 1){
+                        Table[newX][newY] = 0;
+                    }
+                }
+                else{
+                    return 1;
+                }
+            }
+        }
+    }
+    return 0;
 }
