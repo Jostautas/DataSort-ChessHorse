@@ -1,6 +1,4 @@
 #include "header.h"
-#include <stdio.h>
-#include <vector>
 
 using namespace std;
 
@@ -28,6 +26,7 @@ void initTable(int n, vector<vector<int>> &Table){
     for(int i = 0; i < n; i++){
         Table.push_back(TableY);
     }
+    Table[0][0] = 1;
 }
 void printTable(vector<vector<int>> Table){
     for(unsigned int i = 0; i < Table.size(); i++){
@@ -49,20 +48,28 @@ void initSet(int CX[], int CY[]){
 }
 // iter - iteration, number of current step
 int go(int n, vector<vector<int>> &Table, int iter, int x, int y, int CX[], int CY[], int nn){
-    int newX, newY, out;
+    int newX, newY, out=0;
     for(int i = 0; i < 8; i++){
         newX = x + CX[i];
-        newY = y + CX[i];
+        newY = y + CY[i];
+        printf("iteration = %d\n", iter);
+        printf("coordinates = %d %d\n", newX, newY);
         if((newX >= 1) && (newX <= n) && (newY >= 1) && (newY <= n)){
-            if(Table[newX][newY] == 0){
-                Table[newX][newY] = iter;
+            if(Table[newX-1][newY-1] == 0){
+                Table[newX-1][newY-1] = iter;
+                
+                printTable(Table);
+                printf("\n");
+
                 if(iter < nn){
+                    
                     out = go(n, Table, iter+1, newX, newY, CX, CY, nn);
                     if(out != 1){
-                        Table[newX][newY] = 0;
+                        Table[newX-1][newY-1] = 0;
                     }
+                    
                 }
-                else{
+                else if(out == 1){
                     return 1;
                 }
             }

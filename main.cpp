@@ -1,7 +1,4 @@
 #include "header.h"
-#include <stdio.h>
-#include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -16,17 +13,12 @@ int main(){
     initTable(n, Table);
     printTable(Table);
     initSet(CX, CY);
-
+    
     if(go(n, Table, 2, 1, 1, CX, CY, nn) == 1){
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < n; j++){
-                printf("%d ", Table[i][j]);
-            }
-            printf("\n");
-        }
+        printTable(Table);
     }
     else{
-        printf("ERROR - does not exist\n");
+        printf("ERROR - solution does not exist\n");
     }
     
     return 0;
