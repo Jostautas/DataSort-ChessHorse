@@ -29,7 +29,7 @@ void initTable(int n, vector<vector<int>> &Table){
     Table[0][0] = 1;
 }
 void printTable(vector<vector<int>> Table){
-    for(unsigned int i = 0; i < Table.size(); i++){
+    for(int i = Table.size()-1; i >= 0; i--){
         for(unsigned int j = 0; j < Table[i].size(); j++){
             printf("%d ", Table[i][j]);
         }
@@ -46,7 +46,6 @@ void initSet(int CX[], int CY[]){
     CX[6] = 1;  CY[6] = -2;
     CX[7] = 2;  CY[7] = -1;
 }
-// iter - iteration, number of current step
 int go(int n, vector<vector<int>> &Table, int iter, int x, int y, int CX[], int CY[], int nn){
     int newX, newY, out=0;
     for(int i = 0; i < 8; i++){
@@ -67,9 +66,12 @@ int go(int n, vector<vector<int>> &Table, int iter, int x, int y, int CX[], int 
                     if(out != 1){
                         Table[newX-1][newY-1] = 0;
                     }
+                    if( out == 1){
+                        return 1;
+                    }
                     
                 }
-                else if(out == 1){
+                else{
                     return 1;
                 }
             }
