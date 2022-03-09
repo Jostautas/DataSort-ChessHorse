@@ -3,13 +3,14 @@
 using namespace std;
 
 int main(){
-    int n, nn; // n - size of n*n board. nn = n*n
+    int n;
+    n = getInput();
+    int nn = n*n;   // n - size of n*n board. nn = n*n
+
     vector<vector<int>> Table;
     int CX[8];
     int CY[8];
-
-    n = getInput();
-    nn = n*n;
+    
     initTable(n, Table);
     printTable(Table);
     initSet(CX, CY);

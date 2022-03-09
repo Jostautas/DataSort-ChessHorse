@@ -66,7 +66,7 @@ int go(int n, vector<vector<int>> &Table, int iter, int x, int y, int CX[], int 
                     if(out != 1){
                         Table[newX-1][newY-1] = 0;
                     }
-                    if( out == 1){
+                    if(out == 1){
                         return 1;
                     }
                     
