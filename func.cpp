@@ -20,6 +20,7 @@ int getInput(){
 }
 void initTable(int n, vector<vector<int>> &Table){
     vector<int> TableY;
+    //  TableY is a vertical component of the Table
     for(int i = 0; i < n; i++){
         TableY.push_back(0);
     }
