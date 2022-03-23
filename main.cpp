@@ -3,17 +3,16 @@
 using namespace std;
 
 int main(){
-    int n, x, y;
+    int n, x, y;    // n - size of n*n array. x, y = starting position coordinates
     long unsigned int numOfTries=0;
     //n = getN();
-    
 
     //printStartingData(n, x, y);
 
     vector<vector<int>> Table;
     int CX[8];
     int CY[8];
-    
+    initSet(CX, CY);
     
     //printTable(Table);
     
