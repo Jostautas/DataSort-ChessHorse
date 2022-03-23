@@ -2,6 +2,35 @@
 
 using namespace std;
 
+void interface(int *n, int *x, int *y, vector<vector<int>> Table, int CX[], int CY[], long unsigned int *numOfTries){
+    printf("press a specified number to select a menu entry\n");
+    printf("1. Enter custom size of board and starting position\n");
+    printf("2. Run 7 test cases\n");
+
+    int ch;
+    while(1){
+        if((scanf("%d", &ch) == 1) && (ch >= 1) && (ch <= 2)){
+            if(ch == 1){
+                *n = getN();
+                *x = getCoordinate('X', *n);
+                *y = getCoordinate('Y', *n);
+                initTable(*n, Table, *x, *y);
+                initSet(CX, CY);
+                ofstream outShort;
+                outShort.open("out-short.txt");
+                ofstream outFull;
+                outFull.open("out-full.txt");
+                execution(*n, Table, *x, *y, CX, CY, numOfTries, outShort);
+            }
+            break;
+        }
+        else{
+            printf("Error: Enter a correct integer value\n");
+            while(getchar() != '\n');
+        }
+    }
+}
+
 int getN(){
     int n;
     printf("Enter table size N\n");
@@ -87,7 +116,22 @@ void initSet(int CX[], int CY[]){
     CX[6] = 1;  CY[6] = -2;
     CX[7] = 2;  CY[7] = -1;
 }
-int go(int n, vector<vector<int>> &Table, int iter, int x, int y, int CX[], int CY[], int nn, long unsigned int *numOfTries){
+void execution(int n, vector<vector<int>> Table, int x, int y, int CX[], int CY[], long unsigned int *numOfTries, ostream &outShort){
+    outShort << "kurwa" << endl;
+    printf("PART 2. Execution\n");
+    if(go(n, Table, 2, x, y, CX, CY, numOfTries) == 1){
+        printf("\nPART 3. Results\n");
+        printf("1) Solution found. Number of tries = %ld\n", *numOfTries);
+        printf("2) graphical solution:\n");
+        printTable(Table);
+    }
+    else{
+        printf("THIRD PART. Results\n");
+        printf("Solution does not exist\n");
+        printf("Number of tries = %ld\n", *numOfTries);
+    }
+}
+int go(int n, vector<vector<int>> &Table, int iter, int x, int y, int CX[], int CY[], long unsigned int *numOfTries){
     int newX, newY, out=0, retry=1;
     for(int i = 0; i < 8; i++){
         ++*numOfTries;
@@ -103,9 +147,9 @@ int go(int n, vector<vector<int>> &Table, int iter, int x, int y, int CX[], int 
                 printf(". TABLE[%d,%d]=%d", newX, newY, iter);
                 Table[newX-1][newY-1] = iter;
 
-                if(iter < nn){
+                if(iter < n*n){
                     
-                    out = go(n, Table, iter+1, newX, newY, CX, CY, nn, numOfTries);
+                    out = go(n, Table, iter+1, newX, newY, CX, CY, numOfTries);
                     if(out != 1){
                         Table[newX-1][newY-1] = 0;
                     }

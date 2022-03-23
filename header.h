@@ -4,9 +4,11 @@
 #include <vector>
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
+void interface(int *n, int *x, int *y, vector<vector<int>> Table, int CX[], int CY[], long unsigned int *numOfTries);
 int getN();
 int getCoordinate(char coord, int n);
 void printStartingData(int n, int x, int y);
@@ -14,7 +16,9 @@ void initTable(int n, vector<vector<int>> &Table, int x, int y);
 void printTable(vector<vector<int>> Table);
 void initSet(int CX[], int CY[]);   // initialize production set (possible moves of horse)
 
+void execution(int n, vector<vector<int>> Table, int x, int y, int CX[], int CY[], long unsigned int *numOfTries, ostream &outShort);
+
 // iter - iteration, number of current step
-int go(int n, vector<vector<int>> &Table, int iter, int x, int y, int CX[], int CY[], int nn, long unsigned int *numOfTries);
+int go(int n, vector<vector<int>> &Table, int iter, int x, int y, int CX[], int CY[], long unsigned int *numOfTries);
 
 #endif

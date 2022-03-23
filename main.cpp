@@ -3,24 +3,24 @@
 using namespace std;
 
 int main(){
-    int n;
+    int n, x, y;
     long unsigned int numOfTries=0;
-    n = getN();
-    int nn = n*n;   // n - size of n*n board. nn = n*n
+    //n = getN();
+    
 
-    int x = getCoordinate('X', n);
-    int y = getCoordinate('Y', n);
-
-    printStartingData(n, x, y);
+    //printStartingData(n, x, y);
 
     vector<vector<int>> Table;
     int CX[8];
     int CY[8];
     
-    initTable(n, Table, x, y);
-    printTable(Table);
-    initSet(CX, CY);
     
+    //printTable(Table);
+    
+
+    interface(&n, &x, &y, Table, CX, CY, &numOfTries);
+    
+    /*
     printf("PART 2. Execution\n");
     if(go(n, Table, 2, x, y, CX, CY, nn, &numOfTries) == 1){
         printf("\nPART 3. Results\n");
@@ -33,7 +33,7 @@ int main(){
         printf("Solution does not exist\n");
         printf("Number of tries = %ld\n", numOfTries);
 
-    }
+    }*/
     
     return 0;
 }
