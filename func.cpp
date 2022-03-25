@@ -147,8 +147,14 @@ int getCoordinate(char coord, int n){
     printf("Enter starting %c coordinate\n", coord);
 
     while(1){
-        if((scanf("%d", &x) == 1) && (x >= 1) && (x <= n)){
-            break;
+        if((scanf("%d", &x) == 1) && (x >= 1)){
+            if(x <= n){
+                break;
+            }
+            else{
+                printf("Error: number out of bounds for matrix %dx%d\n", n, n);
+                while(getchar() != '\n');
+            }
         }
         else{
             printf("Error: Enter a correct possitive integer\n");
