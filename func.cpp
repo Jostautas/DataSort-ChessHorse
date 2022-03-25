@@ -289,12 +289,10 @@ int go(int n, vector<vector<int>> &Table, int iter, int x, int y, int CX[], int 
         newX = x + CX[i];
         newY = y + CY[i];
         
-        //printf("\n");
         outFull << endl;
         if((newX >= 1) && (newX <= n) && (newY >= 1) && (newY <= n)){
             if(Table[newX-1][newY-1] == 0){
                 printStep(*numOfTries, iter, retry, newX, newY, "Empty", outFull);
-                //printf(". TABLE[%d,%d]=%d", newX, newY, iter);
                 outFull << ". TABLE[" << newX << "," << newY << "]=" << iter;
 
                 Table[newX-1][newY-1] = iter;
@@ -304,6 +302,7 @@ int go(int n, vector<vector<int>> &Table, int iter, int x, int y, int CX[], int 
                     out = go(n, Table, iter+1, newX, newY, CX, CY, numOfTries, outFull);
                     if(out != 1){
                         Table[newX-1][newY-1] = 0;
+                        outFull << ". Backtrack";
                     }
                     if(out == 1){
                         return 1;
